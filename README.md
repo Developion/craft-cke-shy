@@ -28,3 +28,13 @@ composer require developion/craft-cke-shy
 # tell Craft to install the plugin
 ./craft plugin/install cke-shy
 ```
+
+# !!!
+In order to avoid soft hyphens being purged by CraftCMS StringHelper regex for invisible characters, run the following command:
+```
+php craft cke-shy/fix-string-helper
+```
+or if you're using it locally, run:
+```
+ddev craft cke-shy/fix-string-helper
+```
