@@ -22,7 +22,6 @@ export default class Tokens extends Plugin {
 				// icon: shyButton.icon,
 				withText: false,
 				tooltip: true,
-				class: 'tokens-list-item',
 			})
 
 			buttonView.on('execute', () => {
@@ -42,6 +41,7 @@ export default class Tokens extends Plugin {
 
 		const toViewPreprocess = (html) => {
 			html = html.split(shyButton.value).join(shyButton.placeholder);
+			html = html.split('­').join(shyButton.placeholder);
 			return html;
 		};
 
