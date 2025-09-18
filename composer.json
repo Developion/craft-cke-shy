@@ -3,7 +3,7 @@
 	"description": ".",
 	"type": "craft-plugin",
 	"license": "mit",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"support": {
 		"email": "admin@developion.com"
 	},
