@@ -29,12 +29,28 @@ composer require developion/craft-cke-shy
 ./craft plugin/install cke-shy
 ```
 
-# !!!
-In order to avoid soft hyphens being purged by CraftCMS StringHelper regex for invisible characters, run the following command:
+## Usage
+In order to be able to use the `&shy;` tags provided by this plugin, a few things must be configured in your environment:
+- HTMLPurifier config must be updated to contain with the following setting:
+```json
+"AutoFormat.RemoveEmpty.Predicate": {
+	"span": {
+		"class": "entity-shy"
+	}
+}
 ```
-php craft cke-shy/fix-string-helper
+- CraftCMS CKEditor plugin config must be updated to contain the following setting:
+```json
+"htmlSupport": {
+	"allow": [
+		{
+			"class": [
+				"entity-shy"
+			],
+			"name": "span"
+		}
+	]
+}
 ```
-or if you're using it locally, run:
-```
-ddev craft cke-shy/fix-string-helper
-```
+
+## Enjoy your hyphenation!
