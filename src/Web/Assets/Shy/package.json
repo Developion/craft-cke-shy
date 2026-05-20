@@ -42,13 +42,15 @@
 		"lint-staged": "^16.1.6",
 		"stylelint": "^16.24.0",
 		"stylelint-config-ckeditor5": ">=12.1.1",
+		"terser": "^5.47.1",
 		"vite": "^8.0.13"
 	},
 	"peerDependencies": {
 		"ckeditor5": ">=46.1.1"
 	},
 	"scripts": {
-		"build": "vite build",
+		"build": "vite build --mode production",
+		"build:dev": "vite build --mode development",
 		"lint": "eslint \"**/*.js\" --quiet",
 		"stylelint": "stylelint --quiet --allow-empty-input 'theme/**/*.css'",
 		"prepare": "npm run build"
