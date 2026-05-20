@@ -15,7 +15,7 @@ class Plugin extends BasePlugin
 	{
 		parent::init();
 		if (Craft::$app->getRequest()->getIsCpRequest()) {
-			CKEditor::registerCkeditorPackage(ShyAsset::class);
+			CKEditor::registerCkeditorPackage(ShyAsset::class, 'tokens.js');
 		}
 
 		if (Craft::$app->getRequest()->getIsSiteRequest()) {

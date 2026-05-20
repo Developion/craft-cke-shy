@@ -12,10 +12,11 @@ use craft\web\View;
  */
 class ShyAsset extends BaseCkeditorPackageAsset
 {
-	public $sourcePath = __DIR__ . '/build';
+	public $sourcePath = __DIR__ . '/dist';
+	public string $namespace = '@developion/ckeditor5-tokens';
 
 	public $js = [
-		'tokens.js',
+		['tokens.js', 'type' => 'module']
 	];
 
 	public array $pluginNames = [
@@ -26,7 +27,7 @@ class ShyAsset extends BaseCkeditorPackageAsset
 		'tokens',
 	];
 
-	public function registerPackage(View $view): void
+	public function registerPackage(): void
 	{
 		$shyButton = json_encode([
 			'label' => Craft::t('site', 'Soft Hyphen'),
@@ -39,7 +40,7 @@ class ShyAsset extends BaseCkeditorPackageAsset
 		$js = <<<JS
 window.shyButton = {$shyButton};
 JS;
-		$view->registerJs($js, View::POS_HEAD);
-		parent::registerPackage($view);
+		Craft::$app->getView()->registerJs($js, View::POS_HEAD);
+		parent::registerPackage();
 	}
 }

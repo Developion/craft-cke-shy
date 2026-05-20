@@ -1,8 +1,7 @@
-import { Plugin } from 'ckeditor5/src/core'
-import { ButtonView } from 'ckeditor5/src/ui'
-import shortcodesIcon from './../theme/icons/ckeditor.svg'
+import { Plugin, ButtonView } from 'ckeditor5'
+import shortcodesIcon from './../theme/icons/ckeditor.svg?raw'
 
-export default class Tokens extends Plugin {
+export class Tokens extends Plugin {
 	static get pluginName() {
 		return 'Tokens'
 	}
@@ -19,7 +18,6 @@ export default class Tokens extends Plugin {
 			buttonView.set({
 				label: shyButton.label,
 				icon: shortcodesIcon,
-				// icon: shyButton.icon,
 				withText: false,
 				tooltip: true,
 			})
@@ -34,31 +32,32 @@ export default class Tokens extends Plugin {
 			return buttonView
 		})
 
-		const toDataReplacements = (html) => {
-			html = html.split(shyButton.placeholder).join(shyButton.value);
-			return html;
-		};
+		const toDataReplacements = html => {
+			html = html.split(shyButton.placeholder).join(shyButton.value)
+			return html
+		}
 
-		const toViewPreprocess = (html) => {
-			html = html.split(shyButton.value).join(shyButton.placeholder);
-			html = html.split('­').join(shyButton.placeholder);
-			return html;
-		};
+		const toViewPreprocess = html => {
+			html = html.split(shyButton.value).join(shyButton.placeholder)
+			html = html.split('­').join(shyButton.placeholder)
+			return html
+		}
 
 		editor.data.processor = {
-			toData: (viewFragment) => {
-				const html = base.toData(viewFragment);
-				return toDataReplacements(html);
+			toData: viewFragment => {
+				const html = base.toData(viewFragment)
+				return toDataReplacements(html)
 			},
-			toView: (data) => {
-				const pre = toViewPreprocess(data);
-				return base.toView(pre);
+			toView: data => {
+				const pre = toViewPreprocess(data)
+				return base.toView(pre)
 			},
-			registerRawContentMatcher: (...args) =>
-				base.registerRawContentMatcher?.(...args),
+			registerRawContentMatcher: (...args) => base.registerRawContentMatcher?.(...args),
 			useFillerType: (...args) => base.useFillerType?.(...args),
 			getDomChildren: (...args) => base.getDomChildren?.(...args),
-			_base: base
-		};
+			_base: base,
+		}
 	}
 }
+
+export default Tokens
