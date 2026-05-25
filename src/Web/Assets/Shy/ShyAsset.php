@@ -12,6 +12,7 @@ use craft\web\View;
  */
 class ShyAsset extends BaseCkeditorPackageAsset
 {
+	/**	@var string */
 	public $sourcePath = __DIR__ . '/dist';
 	public string $namespace = '@developion/ckeditor5-tokens';
 
